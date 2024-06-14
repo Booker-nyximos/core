@@ -1,11 +1,11 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.3.0'
+    id 'org.springframework.boot' version '3.3.0' apply false
     id 'io.spring.dependency-management' version '1.1.5'
 }
 
 group = 'com.booker'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.3-SNAPSHOT'
 
 java {
     toolchain {
@@ -17,8 +17,78 @@ repositories {
     mavenCentral()
 }
 
+dependencyManagement {
+    imports {
+        mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+    }
+}
+
+def querydslVersion = '5.0.0'
+def mapstructVersion = '1.5.3.Final'
+def swaggerVersion = '3.0.0'
+def eurekaClientVersion = '3.1.4'
+def hibernateVersion = '7.0.5.Final'
+def mysqlConnectorVersion = '8.0.31'
+def feignClientVersion = '3.1.6'
+def openfeignVersion = '11.10'
+def springSecurityVersion = '5.7.5'
+def springKafkaVersion = '2.9.13'
+def springRestdocsMockmvcVersion = '2.0.7.RELEASE'
+def p6spyVersion = '1.8.0'
+def nettyCodecVersion = '4.1.77.Final'
+def jsonVersion = '20220924'
+def jjwtVersion = '0.11.5'
+def springCloudBusVersion = '3.1.2'
+
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.springframework.boot:spring-boot-starter-undertow'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation ('org.springframework.boot:spring-boot-starter-web') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    }
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+
+    implementation "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:${eurekaClientVersion}"
+    implementation "io.github.openfeign:feign-httpclient:${openfeignVersion}"
+    implementation "org.springframework.cloud:spring-cloud-starter-openfeign:${feignClientVersion}"
+    implementation "org.springframework.cloud:spring-cloud-starter-bus-amqp:${springCloudBusVersion}"
+
+    implementation "org.springframework.security:spring-security-core:${springSecurityVersion}"
+    implementation "org.springframework.restdocs:spring-restdocs-mockmvc:${springRestdocsMockmvcVersion}"
+    implementation "org.springframework.kafka:spring-kafka:${springKafkaVersion}"
+    implementation "org.hibernate.validator:hibernate-validator:${hibernateVersion}"
+
+    implementation "io.springfox:springfox-boot-starter:${swaggerVersion}"
+    implementation "io.springfox:springfox-swagger-ui:${swaggerVersion}"
+
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+
+
+    implementation "com.querydsl:querydsl-core:${querydslVersion}"
+    implementation "com.querydsl:querydsl-collections:${querydslVersion}"
+    implementation "com.querydsl:querydsl-jpa:${querydslVersion}"
+    implementation "com.querydsl:querydsl-sql:${querydslVersion}"
+    compileOnly "com.querydsl:querydsl-apt:${querydslVersion}"
+    implementation "io.netty:netty-codec-http:${nettyCodecVersion}"
+    implementation "com.github.gavlyukovskiy:p6spy-spring-boot-starter:${p6spyVersion}"
+    
+    implementation "org.json:json:${jsonVersion}"
+    implementation "io.jsonwebtoken:jjwt-api:${jjwtVersion}"
+    implementation "io.jsonwebtoken:jjwt-impl:${jjwtVersion}"
+    implementation "io.jsonwebtoken:jjwt-jackson:${jjwtVersion}"
+
+    implementation "com.mysql:mysql-connector-j:${mysqlConnectorVersion}"
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
