@@ -22,21 +22,16 @@ import java.util.List;
 @EnableRedisRepositories
 public class RedisRepositoryConfig {
 
-
-    @Value("${spring.redis.data.host}")
+    @Value("${spring.redis.host}")
     private String redisHost;
 
 
-    @Value("${spring.redis.data.port}")
-    private String redisPort;
-
-    @Value("${spring.redis.data.cluster.nodes}")
-    private List<String> clusterNodes;
+    @Value("${spring.redis.port}")
+    private int redisPort;
 
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
-        RedisClusterConfiguration clusterConfiguration = new RedisClusterConfiguration(clusterNodes);
-        return new LettuceConnectionFactory(clusterConfiguration);
+        return new LettuceConnectionFactory(redisHost, redisPort);
     }
 
     // jackson LocalDateTime mapper

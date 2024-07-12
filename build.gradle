@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.booker'
-version = '0.0.11-SNAPSHOT'
+version = '0.0.12-SNAPSHOT'
 description = 'core'
 
 java {
@@ -26,7 +26,7 @@ dependencyManagement {
     }
 }
 
-def querydslVersion = '5.0.0'
+def querydslVersion = '5.1.0'
 def mapstructVersion = '1.5.3.Final'
 def swaggerVersion = '3.0.0'
 def eurekaClientVersion = '3.1.4'
@@ -73,12 +73,7 @@ dependencies {
 
     implementation "org.mapstruct:mapstruct:${mapstructVersion}"
 
-
-    implementation "com.querydsl:querydsl-core:${querydslVersion}"
-    implementation "com.querydsl:querydsl-collections:${querydslVersion}"
-    implementation "com.querydsl:querydsl-jpa:${querydslVersion}"
-    implementation "com.querydsl:querydsl-sql:${querydslVersion}"
-    compileOnly "com.querydsl:querydsl-apt:${querydslVersion}"
+    implementation "com.querydsl:querydsl-jpa:${querydslVersion}:jakarta"
     implementation "io.netty:netty-codec-http:${nettyCodecVersion}"
     implementation "com.github.gavlyukovskiy:p6spy-spring-boot-starter:${p6spyVersion}"
     
