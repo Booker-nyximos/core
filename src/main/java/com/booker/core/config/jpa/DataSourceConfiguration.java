@@ -59,7 +59,7 @@ public class DataSourceConfiguration {
     @DependsOn({ROUTING_DATASOURCE})
     @Primary
     @Bean
-    public DataSource dataSource(DataSource routingDataSource) {
+    public DataSource dataSource(@Qualifier("routingDataSource") DataSource routingDataSource) {
         return new LazyConnectionDataSourceProxy(routingDataSource);
     }
 }
