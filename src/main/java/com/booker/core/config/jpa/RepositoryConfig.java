@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
@@ -38,6 +39,9 @@ public class RepositoryConfig {
         factoryBean.setDataSource(dataSource);
         factoryBean.setPackagesToScan(RepositoryConfig.class.getPackage().getName(), "com.booker.**");
         factoryBean.setJpaProperties(commonJpaProperty().getProperties());
+
+        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        factoryBean.setJpaVendorAdapter(vendorAdapter);
 
         return factoryBean;
     }
