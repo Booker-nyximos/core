@@ -42,7 +42,7 @@ public class RepositoryConfig {
 
         factoryBean.setDataSource(dataSource);
         factoryBean.setJpaVendorAdapter(jpaVendorAdapter);
-        factoryBean.setPackagesToScan(RepositoryConfig.class.getPackage().getName(), "kr.tenbyten.**");
+        factoryBean.setPackagesToScan(RepositoryConfig.class.getPackage().getName(), "com.booker.**");
         factoryBean.setJpaProperties(commonJpaProperty().getProperties());
 
         return factoryBean;
