@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.booker'
-version = '0.0.20-SNAPSHOT'
+version = '0.0.21-SNAPSHOT'
 description = 'core'
 
 java {
@@ -53,7 +53,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-amqp'
     implementation 'org.springframework.boot:spring-boot-starter-undertow'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.springframework.cloud:spring-cloud-starter-vault-config'
     implementation ('org.springframework.boot:spring-boot-starter-web') {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
     }
