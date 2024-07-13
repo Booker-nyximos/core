@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
@@ -34,14 +33,9 @@ public class RepositoryConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(@Qualifier("dataSource") DataSource dataSource, ConfigurableListableBeanFactory beanFactory) {
 
-        HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
-        jpaVendorAdapter.setGenerateDdl(EntityUtil.generateDDL(commonJpaProperty()));
-        jpaVendorAdapter.setShowSql(EntityUtil.showSQL(commonJpaProperty()));
-
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 
         factoryBean.setDataSource(dataSource);
-        factoryBean.setJpaVendorAdapter(jpaVendorAdapter);
         factoryBean.setPackagesToScan(RepositoryConfig.class.getPackage().getName(), "com.booker.**");
         factoryBean.setJpaProperties(commonJpaProperty().getProperties());
 
