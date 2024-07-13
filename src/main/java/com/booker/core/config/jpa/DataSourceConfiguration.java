@@ -7,6 +7,7 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.jdbc.datasource.LazyConnectionDataSourceProxy;
 
 import javax.sql.DataSource;
 
@@ -18,8 +19,8 @@ public class DataSourceConfiguration {
     @Bean(name = "dataSource")
     @ConfigurationProperties("spring.datasource.hikari")
     public DataSource dataSource() {
-        return DataSourceBuilder.create()
+        return new LazyConnectionDataSourceProxy(DataSourceBuilder.create()
                 .type(HikariDataSource.class)
-                .build();
+                .build());
     }
 }
