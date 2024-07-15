@@ -34,14 +34,16 @@ public class RepositoryConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(@Qualifier("dataSource") DataSource dataSource, ConfigurableListableBeanFactory beanFactory) {
 
+        HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
+        jpaVendorAdapter.setGenerateDdl(EntityUtil.generateDDL(commonJpaProperty()));
+        jpaVendorAdapter.setShowSql(EntityUtil.showSQL(commonJpaProperty()));
+
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 
         factoryBean.setDataSource(dataSource);
+        factoryBean.setJpaVendorAdapter(jpaVendorAdapter);
         factoryBean.setPackagesToScan(RepositoryConfig.class.getPackage().getName(), "com.booker.**");
         factoryBean.setJpaProperties(commonJpaProperty().getProperties());
-
-        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        factoryBean.setJpaVendorAdapter(vendorAdapter);
 
         return factoryBean;
     }
