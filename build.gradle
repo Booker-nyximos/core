@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.booker'
-version = '0.0.39-SNAPSHOT'
+version = '0.0.40-SNAPSHOT'
 description = 'core'
 
 java {
