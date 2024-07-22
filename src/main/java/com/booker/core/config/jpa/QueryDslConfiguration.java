@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-public class QuerydslConfiguration {
+public class QueryDslConfiguration {
     @PersistenceContext
     private EntityManager entityManager;
 
