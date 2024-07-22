@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.booker'
-version = '0.0.37-SNAPSHOT'
+version = '0.0.38-SNAPSHOT'
 description = 'core'
 
 java {
@@ -79,9 +79,13 @@ dependencies {
 
     implementation "org.mapstruct:mapstruct:${mapstructVersion}"
 
-    implementation "com.querydsl:querydsl-jpa:${querydslVersion}"
+    implementation "com.querydsl:querydsl-jpa:${querydslVersion}:jakarta"
+    implementation "com.querydsl:querydsl-apt:${querydslVersion}"
     implementation "com.querydsl:querydsl-core:${querydslVersion}"
+
     annotationProcessor "com.querydsl:querydsl-apt:${querydslVersion}:jakarta"
+    annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
+    annotationProcessor 'jakarta.annotation:jakarta.annotation-api'
 
     implementation "io.netty:netty-codec-http:${nettyCodecVersion}"
     implementation "com.github.gavlyukovskiy:p6spy-spring-boot-starter:${p6spyVersion}"
