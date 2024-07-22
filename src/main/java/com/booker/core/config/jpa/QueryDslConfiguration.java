@@ -7,12 +7,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.querydsl.jpa.JPQLTemplates;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 @Configuration
 @EnableTransactionManagement
-public class QueryDslConfiguration {
+@EnableJpaRepositories(
+        basePackages = {
+                "com.booker.**.repository"
+        }
+)public class QueryDslConfiguration {
     @PersistenceContext
     private EntityManager entityManager;
 
