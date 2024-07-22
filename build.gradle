@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.booker'
-version = '0.0.35-SNAPSHOT'
+version = '0.0.36-SNAPSHOT'
 description = 'core'
 
 java {
@@ -31,6 +31,7 @@ dependencyManagement {
     }
 }
 
+def commonLangVersion = '3.15.0'
 def querydslVersion = '5.1.0'
 def mapstructVersion = '1.5.3.Final'
 def swaggerVersion = '3.0.0'
@@ -72,6 +73,7 @@ dependencies {
     implementation "org.springframework.restdocs:spring-restdocs-mockmvc:${springRestdocsMockmvcVersion}"
     implementation "org.springframework.kafka:spring-kafka:${springKafkaVersion}"
     implementation "org.hibernate.validator:hibernate-validator:${hibernateVersion}"
+    implementation "org.apache.commons:commons-lang3:${commonLangVersion}"
 
     implementation "io.springfox:springfox-boot-starter:${swaggerVersion}"
     implementation "io.springfox:springfox-swagger-ui:${swaggerVersion}"
