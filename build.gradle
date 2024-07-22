@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.booker'
-version = '0.0.36-SNAPSHOT'
+version = '0.0.37-SNAPSHOT'
 description = 'core'
 
 java {
@@ -49,7 +49,6 @@ def jsonVersion = '20240303'
 def jjwtVersion = '0.12.6'
 def springCloudBusVersion = '3.1.2'
 
-
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
@@ -80,17 +79,13 @@ dependencies {
 
     implementation "org.mapstruct:mapstruct:${mapstructVersion}"
 
-    implementation "com.querydsl:querydsl-jpa:${querydslVersion}:jakarta"
-    implementation "com.querydsl:querydsl-apt:${querydslVersion}"
+    implementation "com.querydsl:querydsl-jpa:${querydslVersion}"
     implementation "com.querydsl:querydsl-core:${querydslVersion}"
-
     annotationProcessor "com.querydsl:querydsl-apt:${querydslVersion}:jakarta"
-    annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
-    annotationProcessor 'jakarta.annotation:jakarta.annotation-api'
 
     implementation "io.netty:netty-codec-http:${nettyCodecVersion}"
     implementation "com.github.gavlyukovskiy:p6spy-spring-boot-starter:${p6spyVersion}"
-    
+
     implementation "org.json:json:${jsonVersion}"
     implementation "io.jsonwebtoken:jjwt-api:${jjwtVersion}"
     implementation "io.jsonwebtoken:jjwt-impl:${jjwtVersion}"

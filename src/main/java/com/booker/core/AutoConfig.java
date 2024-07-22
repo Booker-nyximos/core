@@ -1,4 +1,4 @@
-package com.booker.core.config;
+package com.booker.core;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
